@@ -1,0 +1,22 @@
+package sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.control;
+
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.entity.Pago;
+
+@Stateless
+public class PagoDAO extends DefaultDAO<Pago> implements PagoDAOInterface {
+
+    @PersistenceContext(unitName = "cafefePU")
+    private EntityManager em;
+
+    public PagoDAO() {
+        super(Pago.class);
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+}

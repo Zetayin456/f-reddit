@@ -1,0 +1,184 @@
+:root {
+    color-scheme: light;
+    --cafe-900: #35251d;
+    --cafe-800: #493327;
+    --cafe-700: #694936;
+    --cafe-100: #f4eee8;
+    --cafe-050: #fbf9f6;
+    --amber-500: #c78435;
+    --amber-100: #f6e8d1;
+    --ink: #29231f;
+    --muted: #746b64;
+    --line: #e5ddd5;
+    --surface: #fff;
+    --shadow: 0 0.4rem 1.4rem rgb(53 37 29 / 7%);
+}
+
+* { box-sizing: border-box; }
+
+html { min-height: 100%; }
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--cafe-050);
+}
+
+/* Header dividido en 3 zonas (Logo, Título/Descripción, Idioma/Perfil) */
+.header-container {
+    display: grid;
+    grid-template-columns: minmax(10rem, 1fr) minmax(16rem, 2fr) minmax(10rem, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem clamp(1rem, 3vw, 2.5rem);
+    color: var(--cafe-900);
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 0.15rem 0.6rem rgb(53 37 29 / 4%);
+}
+
+.header-logo { color: var(--cafe-700); }
+.header-logo h2 { margin: 0; font-size: 1.2rem; letter-spacing: .02em; }
+
+.header-titulo { text-align: center; }
+.header-titulo h1 { margin: 0; font-size: clamp(1.1rem, 2vw, 1.55rem); }
+
+.header-usuario { display: flex; justify-content: flex-end; align-items: center; }
+.header-usuario form { margin: 0; }
+
+/* Layout Principal con Menú Lateral a la izquierda */
+.main-layout {
+    display: grid;
+    grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+    grid-template-areas: "navegacion contenido";
+    min-height: calc(100vh - 9rem);
+}
+
+.sidebar-menu {
+    grid-area: navegacion;
+    min-width: 0;
+    padding: 1.25rem .9rem;
+    background: var(--cafe-100);
+    border-right: 1px solid var(--line);
+}
+
+.sidebar-menu h3 { margin: 0 0 .75rem .4rem; color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+.sidebar-menu .ui-menu { width: 100%; border: 0; background: transparent; }
+.sidebar-menu .ui-menu .ui-menuitem-link { margin: .1rem 0; padding: .65rem .75rem; border-radius: .55rem; color: var(--cafe-800); }
+.sidebar-menu .ui-menu .ui-menuitem-link:hover,
+.sidebar-menu .ui-menu .ui-menuitem-link:focus { color: var(--cafe-900); background: var(--amber-100); }
+
+.content-area {
+    grid-area: contenido;
+    padding: clamp(1rem, 3vw, 2rem);
+    min-width: 0;
+}
+
+.content-area > h1, .content-area > h2, .content-area .ui-panel-titlebar { color: var(--cafe-900); }
+.content-area .ui-panel, .content-area .ui-card, .content-area .ui-datatable,
+.content-area .ui-dialog { border-color: var(--line); border-radius: .75rem; box-shadow: var(--shadow); }
+.content-area .ui-panel .ui-panel-titlebar { background: var(--surface); border-color: var(--line); }
+.content-area input, .content-area textarea, .content-area .ui-inputfield { max-width: 100%; }
+.content-area .ui-button.btn-primary { background: var(--cafe-700) !important; border-color: var(--cafe-700) !important; border-radius: .5rem; }
+.content-area .ui-button.btn-primary:hover { background: var(--cafe-800) !important; border-color: var(--cafe-800) !important; }
+
+/* Flujo común de mantenimiento: formulario primero, listado después. */
+.content-area form {
+    margin-bottom: 1rem;
+}
+
+.content-area .ui-panel,
+.content-area .ui-card {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Algunas vistas antiguas envolvían formulario y tabla en columnas. */
+.content-area > div[style*="display: flex"] {
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 1rem !important;
+}
+
+.content-area > div[style*="display: flex"] > div {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* Presentación uniforme para las tablas de administración. */
+.content-area .ui-datatable {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.content-area .ui-datatable-tablewrapper {
+    overflow-x: auto;
+}
+
+.content-area .ui-datatable thead th {
+    white-space: nowrap;
+    text-align: left;
+}
+
+.content-area .ui-datatable tbody td {
+    vertical-align: middle;
+}
+
+.content-area .ui-datatable .ui-button {
+    margin: 0 0.15rem;
+}
+
+.content-area .ui-datatable thead th { background: var(--cafe-100); color: var(--cafe-900); }
+.content-area .ui-datatable tbody tr:nth-child(even) { background: #fcfaf8; }
+
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas: "navegacion" "contenido";
+        min-height: auto;
+    }
+
+    .sidebar-menu {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: .75rem 1rem;
+    }
+
+    .sidebar-menu h3 { margin-bottom: .35rem; }
+    .sidebar-menu .ui-menu { display: flex; flex-wrap: wrap; gap: .25rem; }
+    .sidebar-menu .ui-menu .ui-menu-list { display: flex; flex-wrap: wrap; gap: .15rem; }
+
+    .content-area {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 30em) {
+    .header-container { grid-template-columns: 1fr auto; gap: .35rem .75rem; padding: .8rem 1rem; }
+    .header-titulo { grid-column: 1 / -1; grid-row: 2; text-align: left; }
+    .header-usuario { grid-column: 2; grid-row: 1; }
+    .content-area { padding: .85rem; }
+    .footer-container { padding: .75rem; }
+}
+
+/* Botón Nuevo Azul */
+.btn-primary {
+    background-color: var(--cafe-700) !important;
+    border-color: var(--cafe-700) !important;
+    color: #ffffff !important;
+}
+
+/* Footer */
+.footer-container {
+    text-align: center;
+    padding: 1rem;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    font-size: 0.9em;
+    color: var(--muted);
+}

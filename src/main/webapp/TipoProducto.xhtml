@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/plantillas/general.xhtml">
+
+    <ui:define name="titulo">Tipos de Producto</ui:define>
+
+    <ui:define name="header_titulo">
+        Gestión de Tipos de Producto
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <h:form id="frmNuevo">
+            <p:panel header="Datos del tipo de producto" style="margin-top: 1rem;">
+
+                <p:messages id="formMessages"
+                            showDetail="true"
+                            closable="true" />
+
+                <h:panelGrid columns="2"
+                             cellpadding="6">
+
+                    <p:outputLabel value="Nombre:"
+                                   for="txtNombre" />
+
+                    <p:inputText id="txtNombre"
+                                 value="#{tipoProductoFrm.registroSeleccionado.nombre}"
+                                 required="true"
+                                 requiredMessage="El nombre es obligatorio."
+                                 maxlength="155" />
+
+                    <p:outputLabel value="Estado:"
+                                   for="chkActivo" />
+
+                    <p:selectBooleanCheckbox id="chkActivo"
+                                             value="#{tipoProductoFrm.registroSeleccionado.activo}" />
+
+                    <p:outputLabel value="Observaciones:"
+                                   for="txtObs" />
+
+                    <p:inputTextarea id="txtObs"
+                                     value="#{tipoProductoFrm.registroSeleccionado.observaciones}"
+                                     autoResize="true"
+                                     rows="3"
+                                     maxlength="2000" />
+
+                </h:panelGrid>
+
+                <div style="text-align: right; margin-top: 12px;">
+
+                    <p:commandButton value="Guardar"
+                                     icon="pi pi-check"
+                                     actionListener="#{tipoProductoFrm.guardar()}"
+                                     process="@form"
+                                     update=":frmTabla:tblTipoProducto
+                                             :frmTabla:messages
+                                             formMessages" />
+
+                    <p:commandButton value="Cancelar"
+                                     actionListener="#{tipoProductoFrm.nuevoRegistro()}"
+                                     update=":frmNuevo"
+                                     icon="pi pi-times"
+                                     styleClass="ui-button-secondary"
+                                     style="margin-left: 5px;" />
+
+                </div>
+
+            </p:panel>
+        </h:form>
+
+        <h:form id="frmTabla">
+            <p:messages id="messages"
+                        showDetail="true"
+                        closable="true" />
+
+            <p:dataTable id="tblTipoProducto"
+                         var="tp"
+                         value="#{tipoProductoFrm.listaTipoProducto}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="No hay tipos de producto registrados.">
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{tp.nombre}" />
+                </p:column>
+
+                <p:column headerText="Estado">
+                    <p:tag value="#{tp.activo ? 'ACTIVO' : 'INACTIVO'}"
+                           severity="#{tp.activo ? 'success' : 'danger'}" />
+                </p:column>
+
+                <p:column headerText="Observaciones">
+                    <h:outputText value="#{tp.observaciones}" />
+                </p:column>
+
+                <p:column headerText="Acciones"
+                          style="width: 150px; text-align: center;">
+
+                    <p:commandButton icon="pi pi-pencil"
+                                     title="Editar"
+                                     actionListener="#{tipoProductoFrm.seleccionarRegistro(tp)}"
+                                     update=":frmNuevo"
+                                     process="@this"
+                                     styleClass="ui-button-warning"
+                                     style="margin-right: 5px;" />
+
+                    <p:commandButton icon="pi pi-trash"
+                                     title="Desactivar"
+                                     actionListener="#{tipoProductoFrm.eliminar(tp)}"
+                                     process="@this"
+                                     update="tblTipoProducto messages"
+                                     disabled="#{not tp.activo}"
+                                     styleClass="ui-button-danger">
+
+                        <p:confirm header="Confirmar desactivación"
+                                   message="¿Deseas desactivar este tipo de producto?"
+                                   icon="pi pi-exclamation-triangle" />
+                    </p:commandButton>
+
+                </p:column>
+
+            </p:dataTable>
+
+            <p:confirmDialog global="true"
+                             showEffect="fade"
+                             hideEffect="fade">
+                <p:commandButton value="Sí"
+                                 type="button"
+                                 styleClass="ui-confirmdialog-yes"
+                                 icon="pi pi-check" />
+                <p:commandButton value="No"
+                                 type="button"
+                                 styleClass="ui-confirmdialog-no"
+                                 icon="pi pi-times" />
+            </p:confirmDialog>
+
+        </h:form>
+
+
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,116 @@
+package sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.entity;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.UUID;
+
+@Entity
+@Table(name = "tipo_descuento", schema = "public")
+@NamedQueries({
+    @NamedQuery(name = "TipoDescuento.findAll", query = "SELECT t FROM TipoDescuento t"),
+    @NamedQuery(name = "TipoDescuento.findActivos", query = "SELECT t FROM TipoDescuento t WHERE t.activo = true"),
+    @NamedQuery(name = "TipoDescuento.findByNombre", query = "SELECT t FROM TipoDescuento t WHERE t.nombre = :nombre")
+})
+public class TipoDescuento implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_tipo_descuento")
+    private UUID idTipoDescuento;
+
+    @Size(max = 2147483647)
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "activo")
+    private Boolean activo;
+
+    @Column(name = "descuento_maximo")
+    private Integer descuentoMaximo;
+
+    @Size(max = 2147483647)
+    @Column(name = "observaciones")
+    private String observaciones;
+
+    public TipoDescuento() {
+    }
+
+    public TipoDescuento(UUID idTipoDescuento) {
+        this.idTipoDescuento = idTipoDescuento;
+    }
+
+    public UUID getIdTipoDescuento() {
+        return idTipoDescuento;
+    }
+
+    public void setIdTipoDescuento(UUID idTipoDescuento) {
+        this.idTipoDescuento = idTipoDescuento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public Integer getDescuentoMaximo() {
+        return descuentoMaximo;
+    }
+
+    public void setDescuentoMaximo(Integer descuentoMaximo) {
+        this.descuentoMaximo = descuentoMaximo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idTipoDescuento != null ? idTipoDescuento.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof TipoDescuento)) {
+            return false;
+        }
+        TipoDescuento other = (TipoDescuento) object;
+        if ((this.idTipoDescuento == null && other.idTipoDescuento != null) || (this.idTipoDescuento != null && !this.idTipoDescuento.equals(other.idTipoDescuento))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.entity.TipoDescuento[ idTipoDescuento=" + idTipoDescuento + " ]";
+    }
+}

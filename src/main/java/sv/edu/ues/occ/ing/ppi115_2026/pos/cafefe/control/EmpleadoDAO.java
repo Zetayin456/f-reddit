@@ -1,0 +1,32 @@
+package sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.control;
+
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import java.io.Serializable;
+import java.util.List;
+import sv.edu.ues.occ.ing.ppi115_2026.pos.cafefe.entity.Empleado;
+
+@Stateless
+public class EmpleadoDAO extends DefaultDAO<Empleado> implements EmpleadoDAOInterface, Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @PersistenceContext(unitName = "cafefePU")
+    private EntityManager em;
+
+    public EmpleadoDAO() {
+        super(Empleado.class);
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    @Override
+    public List<Empleado> findActivos() {
+        return em.createQuery("SELECT e FROM Empleado e WHERE e.activo = TRUE ORDER BY e.nombre, e.apellido", Empleado.class)
+                .getResultList();
+    }
+}

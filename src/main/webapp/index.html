@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#493327">
+    <title>Cafefe POS | Panel de demostración</title>
+    <link rel="stylesheet" href="styles/principal.css">
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <header class="app-header" id="inicio">
+            <a class="brand" href="#inicio" aria-label="Cafefe POS, inicio">
+                <span class="brand-mark" aria-hidden="true">C</span>
+                <span><strong>Cafefe</strong><small> punto de venta</small></span>
+            </a>
+            <div class="header-copy">
+                <p class="eyebrow">SISTEMA DE CAFETERÍA</p>
+                <h1>Panel de operaciones</h1>
+            </div>
+            <span class="status-pill"><span class="status-dot"></span> Interfaz lista</span>
+        </header>
+
+        <nav class="app-nav" aria-label="Navegación principal">
+            <p class="eyebrow">MÓDULOS</p>
+            <a class="nav-link is-active" href="#resumen"><span aria-hidden="true">⌂</span> Resumen</a>
+            <a class="nav-link" href="#productos"><span aria-hidden="true">▦</span> Productos</a>
+            <a class="nav-link" href="#ordenes"><span aria-hidden="true">▤</span> Órdenes</a>
+            <a class="nav-link" href="#herramientas"><span aria-hidden="true">⚙</span> Herramientas</a>
+            <div class="nav-note"><span class="nav-note-icon" aria-hidden="true">☕</span><p>Un espacio cálido para gestionar cada pedido.</p></div>
+        </nav>
+
+        <main class="page-content" id="resumen">
+            <section class="welcome-row" aria-labelledby="welcome-title">
+                <div><p class="eyebrow">BUEN DÍA</p><h2 id="welcome-title">Todo listo para servir.</h2><p class="muted">Este panel conecta la interfaz con los servicios del sistema.</p></div>
+                <div class="date-card"><span class="date-icon" aria-hidden="true">◷</span><span><strong>Operación</strong><small>Panel de administración</small></span></div>
+            </section>
+
+            <section class="summary-grid" aria-label="Resumen de módulos">
+                <article class="summary-card" id="productos"><span class="card-icon icon-amber" aria-hidden="true">▦</span><div><p class="eyebrow">CATÁLOGO</p><h3>Productos</h3><p class="muted">Administra productos y características.</p><a href="producto.xhtml">Abrir módulo <span aria-hidden="true">→</span></a></div></article>
+                <article class="summary-card" id="ordenes"><span class="card-icon icon-green" aria-hidden="true">▤</span><div><p class="eyebrow">ATENCIÓN</p><h3>Órdenes</h3><p class="muted">Consulta órdenes y sus productos.</p><a href="orden.xhtml">Abrir módulo <span aria-hidden="true">→</span></a></div></article>
+                <article class="summary-card"><span class="card-icon icon-purple" aria-hidden="true">%</span><div><p class="eyebrow">PROMOCIONES</p><h3>Descuentos</h3><p class="muted">Configura tipos y descuentos vigentes.</p><a href="Descuento.xhtml">Abrir módulo <span aria-hidden="true">→</span></a></div></article>
+            </section>
+
+            <section class="tools-grid" id="herramientas" aria-label="Herramientas frontend">
+                <article class="panel api-panel">
+                    <div class="panel-heading"><div><p class="eyebrow">FETCH API · ES MODULES</p><h2>Conexión con el catálogo de cajas</h2></div><span class="panel-symbol" aria-hidden="true">↗</span></div>
+                    <p class="muted">Consulta el endpoint REST paginado configurado para la aplicación.</p>
+                    <div class="api-controls"><label for="page-size">Registros por consulta</label><select id="page-size"><option value="5">5 registros</option><option value="10">10 registros</option><option value="20" selected="selected">20 registros</option></select><button class="button button-primary" id="load-cajas" type="button">Consultar cajas</button></div>
+                    <p class="feedback" id="api-feedback" role="status" aria-live="polite">La consulta se realizará al presionar el botón.</p>
+                    <div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Estado</th><th>Observaciones</th></tr></thead><tbody id="cajas-body"><tr><td colspan="3" class="empty-state">Aún no se han consultado registros.</td></tr></tbody></table></div>
+                </article>
+
+                <article class="panel worker-panel">
+                    <div class="panel-heading"><div><p class="eyebrow">WEB WORKER</p><h2>Tarea en segundo plano</h2></div><span class="panel-symbol" aria-hidden="true">⌁</span></div>
+                    <p class="muted">El contador se ejecuta en otro hilo y mantiene libre la interfaz.</p>
+                    <div class="counter-display"><span id="resultado" aria-live="polite">0</span><small>conteo</small></div>
+                    <div class="worker-controls"><label class="sr-only" for="worker-start">Iniciar desde</label><input id="worker-start" type="number" min="0" value="0" inputmode="numeric"><button class="button button-primary" id="worker-toggle" type="button">Iniciar</button><button class="button button-secondary" id="worker-reset" type="button">Reiniciar</button></div>
+                    <p class="feedback" id="worker-feedback" role="status" aria-live="polite">Worker detenido.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="app-footer"><span>CAFefe POS</span><span>Universidad de El Salvador · PPI115 · 2026</span></footer>
+    </div>
+</body>
+</html>

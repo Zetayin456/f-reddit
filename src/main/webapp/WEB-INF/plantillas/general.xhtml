@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="titulo">Sistema POS Cafefe</ui:insert></title>
+        <h:outputStylesheet library="css" name="estilos.css" />
+    </h:head>
+
+    <h:body>
+        <p:growl id="messages" showDetail="true" life="6000">
+            <p:autoUpdate />
+        </p:growl>
+
+        <!-- 1. Header (Banner dividido en 3) -->
+        <header class="header-container">
+            <div class="header-logo">
+                <h2>Cafefe POS</h2>
+            </div>
+            <div class="header-titulo">
+                <h1><ui:insert name="header_titulo">Gestión del Sistema</ui:insert></h1>
+            </div>
+            <div class="header-usuario">
+                <!-- Selector Dinámico de Idioma (i18n) -->
+                <h:form id="frmIdioma">
+                    <p:selectOneMenu value="#{sesionUsuario.idiomaSeleccionado}" onchange="submit()">
+                        <f:selectItem itemLabel="Español" itemValue="es" />
+                        <f:selectItem itemLabel="English" itemValue="en" />
+                    </p:selectOneMenu>
+                </h:form>
+            </div>
+        </header>
+
+        <!-- 2. Cuerpo Principal con Menú Lateral -->
+        <div class="main-layout">
+            <nav class="sidebar-menu">
+                <h3>Módulos</h3>
+                <h:form id="frmMenu">
+                    <p:menu>
+                        <p:menuitem value="Inicio" url="index.html" icon="pi pi-home" />
+                        <p:menuitem value="Rol" outcome="Rol.xhtml" icon="pi pi-shield" />
+                        <p:menuitem value="Empleado" outcome="Empleado.xhtml" icon="pi pi-users" />
+                        <p:menuitem value="Empleado - Rol" outcome="EmpleadoRol.xhtml" icon="pi pi-user-edit" />
+                        <p:menuitem value="Tipo Descuento" outcome="TipoDescuento" icon="pi pi-tags" />
+                        <p:menuitem value="Descuento" outcome="Descuento.xhtml" icon="pi pi-ticket" />
+                        <p:menuitem value="Productos" outcome="producto" icon="pi pi-shopping-bag" />
+                        <p:menuitem value="Descuento Producto" outcome="DescuentoProducto.xhtml" icon="pi pi-percentage" />
+                        <p:menuitem value="Tipo Producto" outcome="TipoProducto.xhtml" icon="pi pi-tags" />
+                        <p:menuitem value="Producto - Tipo" outcome="ProductoTipoProducto.xhtml" icon="pi pi-sitemap" />
+                        <p:menuitem value="Producto - Característica" outcome="ProductoCaracteristica.xhtml" icon="pi pi-sliders-h" />
+                        <p:menuitem value="Tipo Característica" outcome="tipo_caracteristica.xhtml" icon="pi pi-list" />
+                        <p:menuitem value="Características" outcome="caracteristica" icon="pi pi-cog" />
+                        <p:menuitem value="Cajas" outcome="caja" icon="pi pi-desktop" />
+                        <p:menuitem value="Pagos" outcome="pago" icon="pi pi-dollar" />
+                        <p:menuitem value="Órdenes" outcome="orden" icon="pi pi-shopping-cart" />
+                        <p:menuitem value="Detalle de Pago" outcome="pagoDetalle" icon="pi pi-receipt" />
+                        <p:menuitem value="Facturas" outcome="factura" icon="pi pi-file-invoice" />
+                        <p:menuitem value="Orden Producto" outcome="ordenProducto" icon="pi pi-box" />
+                        <p:menuitem value="Factura Orden Producto" outcome="facturaOrdenProducto" icon="pi pi-paperclip" />
+                    </p:menu>
+                </h:form>
+            </nav>
+
+            <main class="content-area">
+                <ui:insert name="contenido">
+                    <!-- Contenido dinámico renderizado desde las vistas -->
+                </ui:insert>
+            </main>
+        </div>
+
+        <!-- 3. Footer -->
+        <footer class="footer-container">
+            <p>Todos los derechos reservados © 2026 - Universidad de El Salvador (PPI115)</p>
+        </footer>
+    </h:body>
+</html>
