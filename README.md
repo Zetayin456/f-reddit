@@ -30,13 +30,19 @@ Requirements: Java 21, Maven, and Docker Compose.
 
 Database demo settings are `postgres` / `postgrespassword`, database `pos_ppi115`, port `5432`. These values are for local development only. Liberty connection values can be supplied through environment variables; see `server.env.example`.
 
-### Feedback for the Reddit community
+#### English
+We would love to get your feedback and opinions on the following areas:
 
-We would appreciate feedback on:
+1. **Full UI/UX & Visual Design:**
+   * Review of **all views and forms** across the app (not just the cashier screen).
+   * Visual layout, usability, and suggestions to make the interface cleaner, more intuitive, and comfortable for daily use.
 
-- Jakarta EE architecture and a path to Jakarta EE 11 compatibility.
-- UI/UX improvements for high-volume cashier workflows.
-- Keyboard shortcuts and PrimeFaces `<p:hotkey>` patterns that work well in production.
+2. **Code Quality & Architecture:**
+   * General review of the codebase (Managed Beans, Controllers, Services, Entities).
+   * Best practices, code structure, readability, and overall maintainability.
+
+3. **User Efficiency & Keyboard Navigation:**
+   * Effective use of keyboard shortcuts (`p:hotkey`) and PrimeFaces component patterns in production.
 
 ## Español
 
@@ -68,10 +74,16 @@ Requisitos: Java 21, Maven y Docker Compose.
 
 La configuración de demostración de la base de datos es `postgres` / `postgrespassword`, base `pos_ppi115`, puerto `5432`. Estos valores son solo para desarrollo local. Las variables de conexión de Liberty se pueden definir por entorno; consulta `server.env.example`.
 
-### Comentarios para la comunidad de Reddit
+#### Español
+Nos encantaría recibir tus comentarios e impresiones sobre los siguientes puntos:
 
-Nos interesa recibir comentarios sobre:
+1. **Diseño Visual y UI/UX (Todas las Vistas):**
+   * Opinión sobre **todas las pantallas y formularios** del sistema (no solo la caja).
+   * Distribución visual, comodidad de uso y sugerencias para hacer la interfaz más intuitiva, limpia y ágil.
 
-- La arquitectura Jakarta EE y una ruta de actualización a Jakarta EE 11.
-- Mejoras de UI/UX para operaciones de caja de alto volumen.
-- Atajos de teclado y patrones de PrimeFaces `<p:hotkey>` adecuados para producción.
+2. **Calidad del Código:**
+   * Revisión general de la estructura del código (Beans, Controladores, Servicios, Entidades).
+   * Buenas prácticas en Java/Jakarta EE, legibilidad y sugerencias para mejorar la mantenibilidad.
+
+3. **Eficiencia y Atajos de Teclado:**
+   * Uso de atajos (`p:hotkey`) y patrones de componentes de PrimeFaces para mejorar la experiencia de usuario.
