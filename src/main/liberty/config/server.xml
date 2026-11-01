@@ -10,11 +10,11 @@
     <dataSource id="pgdb" jndiName="jdbc/pgdb">
         <jdbcDriver libraryRef="PostgreSQLDriver"/>
         <properties.postgresql
-            serverName="localhost"
-            portNumber="5432"
-            databaseName="pos_ppi115"
-            user="postgres"
-            password="postgrespassword"/>
+            serverName="${DB_HOST}"
+            portNumber="${DB_PORT}"
+            databaseName="${DB_NAME}"
+            user="${DB_USER}"
+            password="${DB_PASSWORD}"/>
     </dataSource>
 
     <library id="PostgreSQLDriver">
